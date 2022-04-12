@@ -107,7 +107,6 @@ describe("metaplex-anchor-nft", () => {
       {
         accounts: {
           mintAuthority: program.provider.wallet.publicKey,
-
           mint: mintKey.publicKey,
           tokenAccount: NftTokenAccount,
           tokenProgram: TOKEN_PROGRAM_ID,

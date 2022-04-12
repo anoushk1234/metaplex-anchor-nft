@@ -53,7 +53,7 @@ pub mod metaplex_anchor_nft {
             },
         ];
         msg!("Creator Assigned");
-        let symbol = std::string::ToString::to_string("Your Symbol");
+        let symbol = std::string::ToString::to_string("symb");
         invoke(
             &create_metadata_accounts_v2(
                 ctx.accounts.token_metadata_program.key(),
