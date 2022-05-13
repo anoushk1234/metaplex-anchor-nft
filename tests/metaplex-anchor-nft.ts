@@ -96,25 +96,25 @@ describe('metaplex-anchor-nft', () => {
     console.log("Metadata address: ", metadataAddress.toBase58());
     console.log("MasterEdition: ", masterEdition.toBase58());
 
-    const tx = await program.rpc.mintNft(
+    const tx = await program.methods.mintNft(
       mintKey.publicKey,
       "https://arweave.net/y5e5DJsiwH0s_ayfMwYk-SnrZtVZzHLQDSTZ5dNRUHA",
       "NFT Title",
-      {
-        accounts: {
-          mintAuthority: wallet.publicKey,
-          mint: mintKey.publicKey,
-          tokenAccount: NftTokenAccount,
-          tokenProgram: TOKEN_PROGRAM_ID,
-          metadata: metadataAddress,
-          tokenMetadataProgram: TOKEN_METADATA_PROGRAM_ID,
-          payer: wallet.publicKey,
-          systemProgram: SystemProgram.programId,
-          rent: anchor.web3.SYSVAR_RENT_PUBKEY,
-          masterEdition: masterEdition,
-        },
-      }
-    );
+    )
+      .accounts({
+        mintAuthority: wallet.publicKey,
+        mint: mintKey.publicKey,
+        tokenAccount: NftTokenAccount,
+        tokenProgram: TOKEN_PROGRAM_ID,
+        metadata: metadataAddress,
+        tokenMetadataProgram: TOKEN_METADATA_PROGRAM_ID,
+        payer: wallet.publicKey,
+        systemProgram: SystemProgram.programId,
+        rent: anchor.web3.SYSVAR_RENT_PUBKEY,
+        masterEdition: masterEdition,
+      },
+      )
+      .rpc();
     console.log("Your transaction signature", tx);
   });
 });
